@@ -1,5 +1,21 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  
+  "version": 4,
+  "async": false,
+  "streaming": 100,
+
+  "palette": {
+    "border": "#7eb8da",
+    "text": "#c7c7c7"
+  },
+  "palettes": {
+    "template": "{{ if eq .Env.TERM_THEME \"light\" }}light{{ else }}dark{{ end }}",
+    "list": {
+      "dark":  { "border": "#7eb8da", "text": "#c7c7c7", "white": "#ffffff" },
+      "light": { "border": "#2f5f8a", "text": "#222222", "white": "#111111" }
+    }
+  },
   "blocks": [
     {
       "alignment": "left",
@@ -34,7 +50,7 @@
         {
           "foreground": "#7eb8da",
           "style": "plain",
-          "template": "[<#ffffff>\ueb99</> {{ .UserName }} :: {{ if .SSHSession }}<#ffffff>\ueba9</> {{ .HostName }}{{ end }}<#ffffff>\uf108</> {{ .HostName }}]",
+          "template": "[<#ffffff>\ueb99</> {{ .UserName }} :: {{ if .SSHSession }}<#ffffff>\ueba9</> {{ .HostName }}{{ else }}<#ffffff>\uf108</> {{ .HostName }}{{ end }}]",
           "type": "session"
         },
         {
@@ -147,6 +163,20 @@
     {
       "alignment": "left",
       "newline": true,
+      "leading_diamond": "<#7eb8da>\u2523</>",
+      "segments": [
+        {
+          "type": "claude",
+          "style": "plain",
+          "foreground": "p:text",
+          "template": "[\udb82\udfc9</> {{ .Model.DisplayName }} {{ .TokenUsagePercent.Gauge }}]"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
       "leading_diamond": "<#7eb8da>\u2514\u2500</>",
       "segments": [
         {
@@ -157,7 +187,7 @@
         {
           "foreground": "#f84545",
           "style": "diamond",
-          "template": "[<#ffffff>\uea6c</> error]",
+          "template": "[\uea6c</> code {{ .Code }}{{ if reason .Code }}: {{ reason .Code }}{{ end }}]",
           "type": "status"
         },
         {
@@ -181,6 +211,5 @@
   "error_line": {
     "background": "transparent",
     "template": "<#ff0000>\uea87</> "
-  },
-  "version": 3
+  }
 }
