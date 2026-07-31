@@ -1,4 +1,5 @@
-# A simple custom modification I've made of the Tokyo theme from the oh-my-posh project by _JanDeDobbeleer_.
+# A simple custom modification made of the Tokyo theme 
+from the oh-my-posh project by _JanDeDobbeleer_.
 
 ## **How to use the theme:**
 
